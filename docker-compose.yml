@@ -5,20 +5,19 @@ services:
     build: 
       context: ./node
     container_name: app
-    entrypoint: dockerize -wait tcp://db:3306 -timeout 20s docker-entrypoint.sh 
+    entrypoint: dockerize -wait tcp://database_fullcycle:3306 -timeout 20s docker-entrypoint.sh 
     networks:
       - node-challenge
-    volumes:
-      - ./node:/usr/src/app
+    command: node index.js
     tty: true
     depends_on:
-      - db
-    command: node index.js
+      - database_fullcycle
+    
 
-  db:
+  database_fullcycle:
     image: mysql:5.7.42
     command: --innodb-use-native-aio=0
-    container_name: db
+    container_name: database_fullcycle
     restart: always
     tty: true
     volumes:

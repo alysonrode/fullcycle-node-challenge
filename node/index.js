@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 const port = 3000;
 const config = {
-    host: 'db',
+    host: 'database_fullcycle',
     user: 'root',
     password: 'root',
     database: 'fullcycle-node-db'
